@@ -70,6 +70,7 @@ def underperforming_carriers(arrivals_by_carrier):
     ### YOUR CODE HERE ###
     return
 
+
 ############## TASK 2 ##############
 
 def read_and_process_npy(filename):
@@ -85,6 +86,26 @@ def read_and_process_npy(filename):
     return
 
 
+############## PART 2 HELPER FUNCTION ##############
+
+def perform_least_squares(y):
+    """
+    Given a data set, finds the line best fit perform least squares
+
+    Input:
+        y (array): data
+
+    Returns (tuple of floats): the slope and y-intercept of the
+        line fitted to y
+    """
+
+    x = np.arange(len(y))
+    A = np.vstack([x, np.ones(len(y))]).T
+    m, b = np.linalg.lstsq(A, y, rcond=None)[0]
+
+    return m, b
+
+
 ############## TASK 3 ##############
 
 def remove_irregularities(ts, width):
@@ -97,20 +118,6 @@ def remove_irregularities(ts, width):
         width (int): the width over which to smoothe
 
     Returns (NumPy array): smoothed time series data
-    """
-    ### YOUR CODE HERE ###
-    return
-
-
-def perform_least_squares(y):
-    """
-    Given a data set, finds the line best fit perform least squares
-
-    Input:
-        y (array): data
-
-    Returns (tuple of floats): the slope and y-intercept of the
-        line fitted to y
     """
     ### YOUR CODE HERE ###
     return
@@ -145,22 +152,3 @@ def is_seasonal(ts, width):
     """
     ### YOUR CODE HERE ###
     return
-
-############## PART 2 HELPER FUNCTION ##############
-
-def perform_least_squares(y):
-    """
-    Given a data set, finds the line best fit perform least squares
-
-    Input:
-        y (array): data
-
-    Returns (tuple of floats): the slope and y-intercept of the
-        line fitted to y
-    """
-
-    x = np.arange(len(y))
-    A = np.vstack([x, np.ones(len(y))]).T
-    m, b = np.linalg.lstsq(A, y, rcond=None)[0]
-
-    return m, b
